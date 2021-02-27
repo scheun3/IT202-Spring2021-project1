@@ -123,7 +123,7 @@
                       });
                     }
                 </script>
-                  <h3>Here's a Google map that points to UIC</h3>
+                  <h3>Here's a Google map that points to UIC where I'm enrolled in</h3>
                     <!--The div element for the map -->
                     <div id="map"></div>                      
         </center>
@@ -132,13 +132,13 @@
       <div class="screen" id="about">
           <center>
             <h5 class="card-title">Goal</h5>
-                  <p class="card-text">This Single Page app was a project to allow users to search and access the Chicago City-Owned Land Inventory database. This consists of an app shell model, Bootstrap for UI elements, and five screens/pages titled Home/Instruction, Form, Data, Map, and About respectively.</p>
+                  <p class="card-text">This Single Page app is a project to allow users to search and access the Chicago City-Owned Land Inventory database. <br> This consists of an app shell model, Bootstrap for UI elements, and five screens/pages titled Home/Instruction, Form, Data, Map, and About respectively.</p>
             <div class="card" style="width: 18rem;">
               
               <div class="card-body">
-                <h5 class="card-title">Stanley K Cheung</h5>
+                <h5 class="card-title">Created by <br> Stanley K Cheung</h5>
                 
-                <p class="card-text">Prefers to go by Stan. A senior in UIC enrolled in IT202 led by David Hayes. When not pulling out hairs and crying about codes not working (and not realizing it's caused by a missing end bracket), he likes to spend time cooking new receipes. For other prospective projects, venture through the linked github page.</p>
+                <p class="card-text">Prefers to go by Stan.<br> A senior in UIC enrolled in IT202 taught by David Hayes.<br> When not pulling out hairs and crying about codes not working (and not realizing it's caused by a missing end bracket), he likes to spend time cooking new receipes he learns from Food Network. For other prospective projects, venture through the linked github page.</p>
                 
                 <a href="https://github.com/scheun3" class="btn btn-primary">Github</a>
               </div>
@@ -147,5 +147,93 @@
         </div>
     </div>
     <!-- End of content -->
+		
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, lastly Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Typescript that makes the screens visible-->
+      <script>
+        // Ensures home page is always shown
+        document.querySelector("#home").style.display= "block";
+
+        let navAnchors= document.querySelectorAll("div#navbarNavAltMarkup a")
+
+        navAnchors.forEach( (anchor) => {
+          anchor.addEventListener("click", (event) => {
+
+            //hides all the screens first
+            document.querySelectorAll(".screen").forEach( (screen) => {
+              screen.style.display = "none";
+            });
+            //read data screen attribute  
+            let screen = event.target.getAttribute("data-screen");
+
+            //find relevant screen
+            let targetScreen= document.querySelector("#" + screen);
+
+            //Executes and displays
+            targetScreen.style.display= "block";
+          })
+        })
+      </script>
+      <!-- Map screen -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARcaUReT_nLizdf897iMAPXqgw78EwURI&callback=initMap" async></script>
+
+      <!-- Results page/Populates cards-->
+        <!--Fetch request using fetch url method-->
+        <script>
+          let  url= "https://data.cityofchicago.org/resource/aksk-kvfp.json"
+
+          let template= document.querySelector(".template");
+
+          //Search box method
+          document.querySelector("#searchButton").addEventListener( "click", (event) => {
+            // console.log("search click")
+            //Remove empty cards if called
+            document.querySelectorAll(".ward_card").forEach( (node) => {
+              // console.log("removing node")
+              node.remove()
+            });
+
+            let type= document.querySelector("input").value;
+            //Tells script to look through wards when called upon
+            let url = "https://data.cityofchicago.org/resource/aksk-kvfp.json" + "?ward=" + type;
+           // console.log(url)
+
+        fetch (url)
+          .then ( ( response ) => { return response.json() })
+          .then ( (data) => {
+            // console.log(data)
+            data.forEach( (item) => {
+              // console.log(item)
+              let clone=template.cloneNode(true);
+              //Adds name of ward to card
+              let h5 = clone.querySelector("h5.card-title")
+              h5.innerText = item.community_area_name;
+              //Adds pin to card
+              let h6 = clone.querySelector("h6.card-subtitle")
+              h6.innerText= item.pin;
+              //Adds address to card
+              let p =clone.querySelector("p.card-text")
+              p.innerText=item.address;
+              //Adds square feet to card
+              let p2 =clone.querySelector("p2.card-text2")
+              p2.innerText=item.sq_ft;
+
+              //Ensures accurate results by deleting empty cards
+              clone.classList.remove("template");
+              clone.classList.add("ward_card")
+              template.parentElement.append(clone);
+              
+            })
+
+          })
+          });
+
+        
+
+        </script>
 	</body>
 </html>
