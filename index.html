@@ -38,14 +38,70 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav"> 
 		<!--Buttons on the top navigation bar -->
-          <a data-screen="home" class="nav-item nav-link" >Home</a>
-          <a data-screen="search" class="nav-item nav-link" >Search</a>
-          <a data-screen="results" class="nav-item nav-link" >Results</a>
+          <a data-screen="home" class="nav-item nav-link" >Home/Instructions</a>
+          <a data-screen="form" class="nav-item nav-link" >Form</a>
+          <a data-screen="data" class="nav-item nav-link" >Data</a>
           <a data-screen="map" class="nav-item nav-link" >Map</a> 
-          <a data-screen="about" class="nav-item nav-link" >About</a>       
+          <a data-screen="about" class="nav-item nav-link" >About</a>                  
         </div>
       </div>
       
     </nav>
+	<div id="content">
+    <!-- Home page -->
+      <div class="screen" id="home">
+        <center>
+          <div class="card">
+            <div class="card-header">
+              Home Page 
+            </div>
+              <div class="card-body">
+                <h5 class="card-title">Goal</h5>
+                  <p class="card-text">This following project consists of a Single-Page App that allows users to access and search the Chicago City-Owned Land Inventory database.</p>
+                    <a href="https://dev.socrata.com/foundry/data.cityofchicago.org/aksk-kvfp" class="btn btn-primary">Link to said database</a>
+                </div>
+        </div>
+        </center>
+      </div>
+	<!-- Search page -->
+      <div class="screen" id="form">
+        <center>
+          <div class="card w-75">
+            <div class="card-body">
+              <h5 class="card-title">Search</h5>
+              <p class="card-text">Enter the ward number</p>
+              <form class="d-flex" >
+                <input class="form-control me-2" id="ward" type="search" placeholder="Enter the number here..." >
+              </form>
+              <button  id= "searchButton" class="btn btn-outline-success">Click here to search after entering the ward number</button>  
+            </div>
+          </div>
+        </center>
+      </div>
+	 <!-- Results page -->
+      <div class="screen" id="data">
+        <center>
+        <h1>Results page</h1>
+          <div class="alert alert-primary" role="alert">
+            Here's what we found:
+          </div>
+        </center>
+          <!-- Main code for card -->
+            <div class="container">
+
+              <div class="row">
+                <div class="card template" >
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Sample text.</p>
+                    <p2 class="card-text2">Sample text.</p2>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <!-- Cards should appear here -->
+        
+      </div>
 	</body>
 </html>
