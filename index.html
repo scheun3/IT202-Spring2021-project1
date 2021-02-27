@@ -101,7 +101,51 @@
           </div>
         </div>
         <!-- Cards should appear here -->
-        
       </div>
+        <!-- Map page -->
+      <div class="screen" id="map">
+        <center>
+          <h1>Let's look around</h1>            
+              <script> 
+                    let map;//creates global variable
+                    function initMap() {
+                      // The location of UIC
+                      const chicago = { lat: 41.8696, lng: -87.6496 };
+                      // Forces map to center position on UIC
+                      map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 4,
+                        center: chicago,
+                      });
+                      // Places a marker on the location of UIC
+                      const marker = new google.maps.Marker({
+                        position: chicago,
+                        map: map,
+                      });
+                    }
+                </script>
+                  <h3>Here's a Google map that points to UIC</h3>
+                    <!--The div element for the map -->
+                    <div id="map"></div>                      
+        </center>
+      </div>
+      <!-- About page -->
+      <div class="screen" id="about">
+          <center>
+            <h5 class="card-title">Goal</h5>
+                  <p class="card-text">This Single Page app was a project to allow users to search and access the Chicago City-Owned Land Inventory database. This consists of an app shell model, Bootstrap for UI elements, and five screens/pages titled Home/Instruction, Form, Data, Map, and About respectively.</p>
+            <div class="card" style="width: 18rem;">
+              
+              <div class="card-body">
+                <h5 class="card-title">Stanley K Cheung</h5>
+                
+                <p class="card-text">Prefers to go by Stan. A senior in UIC enrolled in IT202 led by David Hayes. When not pulling out hairs and crying about codes not working (and not realizing it's caused by a missing end bracket), he likes to spend time cooking new receipes. For other prospective projects, venture through the linked github page.</p>
+                
+                <a href="https://github.com/scheun3" class="btn btn-primary">Github</a>
+              </div>
+            </div>
+          </center>
+        </div>
+    </div>
+    <!-- End of content -->
 	</body>
 </html>
